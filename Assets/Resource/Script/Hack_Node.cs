@@ -6,21 +6,29 @@ public class Hack_Node : MonoBehaviour
     [SerializeField] private float hackDuration = 4f;
     [SerializeField] private GameObject LightNode;
     public bool isHack;
-
-
+    public bool isNear;
+    [SerializeField] private GameObject offmark;
+    [SerializeField] private GameObject LightPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isHack = false;
+        isNear = false;
+        offmark.SetActive(false);
+        LightPanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isHack && LightNode.CompareTag("LightOFF"))
+        if (isNear && !isHack && LightNode.CompareTag("LightOFF"))
+            // 가까이 있음 + 해킹 안했음 + 태그 확인
         {
-            StartCoroutine(HackRoutine());
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(HackRoutine());
+            }
         }
     }
 
@@ -28,10 +36,36 @@ public class Hack_Node : MonoBehaviour
     {
         isHack = true;
 
+        LightPanel.SetActive(true);
+
         GV.LightOFF(hackDuration);
 
         yield return new WaitForSeconds(hackDuration);
 
+        LightPanel.SetActive(false);
+
         isHack = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isNear = true;
+
+            if (isNear)
+            {
+                offmark.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isNear = false;
+            offmark.SetActive(false);
+        }
     }
 }
