@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 110cb6c7b3095be45ae5fa8dfba20039
+guid: 6559e539b7c838b48a2571e4a630eac0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,133 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_temp_walk_0
+      name: Main_Chara_0
       rect:
         serializedVersion: 2
-        x: 159
-        y: 565
-        width: 273
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 623
+        y: 76
+        width: 337
+        height: 875
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d04709c65cb2a744399bc5b57dc52107
-      internalID: 96008692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_temp_walk_1
-      rect:
-        serializedVersion: 2
-        x: 599
-        y: 565
-        width: 273
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c43eb64501de83f43a057fd9ed68e0d0
-      internalID: 843728557
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_temp_walk_2
-      rect:
-        serializedVersion: 2
-        x: 1054
-        y: 565
-        width: 268
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e114450a7d1113d4b9c261429746152a
-      internalID: 292619319
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_temp_walk_3
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 108
-        width: 263
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 564d7f3f8e213484080e557255b00fd5
-      internalID: -2101756700
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_temp_walk_4
-      rect:
-        serializedVersion: 2
-        x: 615
-        y: 111
-        width: 263
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd23462a366dce549ac44e7f3e841c53
-      internalID: -1567113023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_temp_walk_5
-      rect:
-        serializedVersion: 2
-        x: 1067
-        y: 109
-        width: 263
-        height: 389
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9e5a4278fb57444d8e1158ca74cf3c5
-      internalID: -1126844678
+      spriteID: af43ebcc04380aa46b2917ebe912e35d
+      internalID: -1712870830
       vertices: []
       indices: 
       edges: []
@@ -232,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1c4bd7d570997954bbc28210187c7c52
     internalID: 0
     vertices: []
     indices: 
@@ -244,12 +134,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Character_temp_walk_0: 96008692
-      Character_temp_walk_1: 843728557
-      Character_temp_walk_2: 292619319
-      Character_temp_walk_3: -2101756700
-      Character_temp_walk_4: -1567113023
-      Character_temp_walk_5: -1126844678
+      Main_Chara_0: -1712870830
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

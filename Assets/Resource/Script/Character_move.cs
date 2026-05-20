@@ -23,11 +23,11 @@ public class Character_move : MonoBehaviour
 
         if (moveInput > 0) // 오른쪽
         {
-            sprite.flipX = true;
+            sprite.flipX = false;
         }
         else if (moveInput < 0) // 왼쪽
         {
-            sprite.flipX = false;
+            sprite.flipX = true;
         }
 
         anim.SetBool("isMoving", moveInput != 0);

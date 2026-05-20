@@ -5,10 +5,11 @@ public class Guard_Vision : MonoBehaviour
 {
     [Header("Vision")]
     [SerializeField] private Transform visionBox;
-    public float visionDistance = 8f;
-    public float visionHeight = 2f;
-    public int facing = -1;
+    public float visionDistance = 12f;
+    public float visionHeight = 12f;
+    public int facing = -1; // 1 = 오른쪽, -1 = 왼쪽
     bool isLightOFF = false; // 암전 상태 아님 -> true : 암전
+    [SerializeField] private SpriteRenderer SR;
 
     [Header("Detection")]
     public float detection = 0f;
@@ -26,6 +27,7 @@ public class Guard_Vision : MonoBehaviour
             return;
         }
         UpdateVisionBox();
+        UpdateFacingVisual();
         UpdateDetection();
         UpdateState();
     }
@@ -51,7 +53,14 @@ public class Guard_Vision : MonoBehaviour
             xOffset = -visionDistance / 2f;
         }
 
-        visionBox.localPosition = new Vector3(xOffset, 0.5f, 0f);
+        visionBox.localPosition = new Vector3(xOffset, 1.5f, 0f);
+        
+    }
+    private void UpdateFacingVisual()
+    {
+        if (SR == null) return;
+
+        SR.flipX = facing == -1;
     }
 
     public void SetPlayerInVision(bool value)
