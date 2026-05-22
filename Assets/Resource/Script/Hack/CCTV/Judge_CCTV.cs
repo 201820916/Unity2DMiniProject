@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class Judge_CCTV : MonoBehaviour
 {
@@ -6,6 +8,7 @@ public class Judge_CCTV : MonoBehaviour
     [SerializeField] private SpriteRenderer CCTV_Judge;
     [SerializeField] private Sprite Guard_A;
     [SerializeField] private Sprite Guard_Q;
+    [SerializeField] private GameObject CCTV_Vision;
 
     [Header("Detection")]
     public string state = "normal";
@@ -14,6 +17,7 @@ public class Judge_CCTV : MonoBehaviour
     public float detectionDecrease = 40f;
 
     private bool isPlayerInVision;
+    private bool isDisabled;
 
     void Start()
     {
@@ -24,6 +28,11 @@ public class Judge_CCTV : MonoBehaviour
 
     void Update()
     {
+        if (isDisabled)
+        {
+            return;
+        }
+
         UpdateDetection();
         UpdateState();
     }
@@ -66,5 +75,44 @@ public class Judge_CCTV : MonoBehaviour
     public void SetPlayerInVision(bool value)
     {
         isPlayerInVision = value;
+    }
+
+    public void DisableCCTV(float time)
+    {
+        if (isDisabled) return;
+
+        StartCoroutine(DisableRoutine(time));
+    }
+
+    private IEnumerator DisableRoutine(float time)
+    {
+        isDisabled = true;
+        isPlayerInVision = false;
+        detection = 0f;
+        state = "disabled";
+
+        if (CCTV_Judge != null)
+        {
+            CCTV_Judge.sprite = null;
+        }
+
+        if (CCTV_Vision != null)
+        {
+            CCTV_Vision.SetActive(false);
+        }
+
+        Debug.Log("CCTV 비활성화 시작: " + time);
+
+        yield return new WaitForSeconds(time);
+
+        Debug.Log("CCTV 비활성화 종료");
+
+        if (CCTV_Vision != null)
+        {
+            CCTV_Vision.SetActive(true);
+        }
+
+        isDisabled = false;
+        state = "normal";
     }
 }

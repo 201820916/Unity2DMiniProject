@@ -7,7 +7,7 @@ public class Guard_Vision : MonoBehaviour
     [SerializeField] private Transform visionBox;
     public float visionDistance = 12f;
     public float visionHeight = 12f;
-    public int facing = -1; // 1 = 오른쪽, -1 = 왼쪽
+    public int facing = 1; // 1 = 오른쪽, -1 = 왼쪽
     bool isLightOFF = false; // 암전 상태 아님 -> true : 암전
     [SerializeField] private SpriteRenderer SR;
 

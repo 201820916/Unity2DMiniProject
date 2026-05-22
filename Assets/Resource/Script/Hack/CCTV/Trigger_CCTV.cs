@@ -3,7 +3,7 @@ using UnityEngine;
 public class Trigger_CCTV : MonoBehaviour
 {
 
-    [SerializeField] private Judge_CCTV JC;
+    [SerializeField] private Judge_CCTV CCTV_Judge;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,7 +11,7 @@ public class Trigger_CCTV : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            JC.SetPlayerInVision(true);
+            CCTV_Judge.SetPlayerInVision(true);
         }
     }
 
@@ -21,7 +21,7 @@ public class Trigger_CCTV : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            JC.SetPlayerInVision(false);
+            CCTV_Judge.SetPlayerInVision(false);
         }
     }
 
