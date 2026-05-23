@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LiftTeleport : MonoBehaviour
 {
+    [SerializeField] private Transform startPoint;
     [SerializeField] private Transform destination;
 
 
