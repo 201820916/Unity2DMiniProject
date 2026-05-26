@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections;
-public class Hack_Node : MonoBehaviour
+public class Hack_Node_Guard : MonoBehaviour
 {
     [SerializeField] Guard_Vision GV;
     [SerializeField] private float hackDuration = 4f;
     [SerializeField] private GameObject LightNode;
-    public bool isHack;
-    public bool isNear;
     [SerializeField] private GameObject offmark;
     [SerializeField] private GameObject LightPanel;
+    [SerializeField] private HackMiniGame miniGame;
+
+    public bool isHack;
+    public bool isNear;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,9 +30,20 @@ public class Hack_Node : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(HackRoutine());
+                isHack = true;
+                miniGame.StartMiniGame(OnMiniGameSuccess, OnMiniGameFail);
             }
         }
+    }
+
+    private void OnMiniGameSuccess()
+    {
+        StartCoroutine(HackRoutine());
+    }
+
+    private void OnMiniGameFail()
+    {
+        isHack = false;
     }
 
     private IEnumerator HackRoutine()
