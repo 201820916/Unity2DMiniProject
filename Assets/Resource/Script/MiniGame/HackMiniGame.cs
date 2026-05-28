@@ -71,7 +71,6 @@ public class HackMiniGame : MonoBehaviour
         onFail = failCallback;
 
         isPlaying = true;
-        IsPlaying = true;
         remainingTime = timeLimit;
         currentSentence = GetRandomSentence();
 
@@ -152,7 +151,6 @@ public class HackMiniGame : MonoBehaviour
     private void Success()
     {
         isPlaying = false;
-        IsPlaying = false;
         SetPlayerControl(true);
         miniGamePanel.SetActive(false);
 
@@ -163,7 +161,6 @@ public class HackMiniGame : MonoBehaviour
     private void Fail()
     {
         isPlaying = false;
-        IsPlaying = false;
         SetPlayerControl(true);
 
         if (resultText != null)
