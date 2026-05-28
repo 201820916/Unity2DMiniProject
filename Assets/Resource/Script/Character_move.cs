@@ -9,6 +9,7 @@ public class Character_move : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
     private float moveInput;
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -19,6 +20,13 @@ public class Character_move : MonoBehaviour
 
     void Update()
     {
+        if (!canMove)
+        {
+            moveInput = 0f;
+            anim.SetBool("isMoving", false);
+            return;
+        }
+
         moveInput = Input.GetAxisRaw("Horizontal");
 
         if (moveInput > 0) // 오른쪽
@@ -45,6 +53,28 @@ public class Character_move : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
+
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        moveInput = 0f;
+
+        if (anim != null)
+        {
+            anim.SetBool("isMoving", false);
+        }
+
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
     }
 }

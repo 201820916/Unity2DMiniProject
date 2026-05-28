@@ -25,6 +25,8 @@ public class Hack_Node_Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (HackMiniGame.IsPlaying) return;
+
         if (isNear && !isHack && LightNode.CompareTag("LightOFF"))
             // 가까이 있음 + 해킹 안했음 + 태그 확인
         {

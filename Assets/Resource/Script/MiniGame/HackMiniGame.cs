@@ -4,7 +4,11 @@ using TMPro;
 
 public class HackMiniGame : MonoBehaviour
 {
+    public static bool IsPlaying { get; private set; }
+
     [SerializeField] private GameObject miniGamePanel;
+
+    [SerializeField] private Character_move playerMovement;
 
     // 플레이어가 따라 입력해야 할 문장을 보여줌.
     [SerializeField] private TMP_Text QuestionText;
@@ -21,8 +25,7 @@ public class HackMiniGame : MonoBehaviour
     // 제한시간 설정
     [SerializeField] private float timeLimit = 8f;
 
-
-    // 이 배열에 있는 문장 중 하나가 랜덤으로 선택됩니다. Inspector에서 수정할 수 있습니다.
+    // 이 배열에 있는 문장 중 하나가 랜덤으로 선택
     [TextArea]
     [SerializeField] private string[] hackSentences =
     {
@@ -38,33 +41,41 @@ public class HackMiniGame : MonoBehaviour
         "UPLOAD KEY"
     };
 
-    private Action onSuccess;
-    private Action onFail;
-    private bool isPlaying;
-    private string currentSentence;
-    private float remainingTime;
+    private Action onSuccess; // 성공 콜백
+    private Action onFail; // 실패 콜백
+    private bool isPlaying; // 해킹중인가?
+    private string currentSentence; // 제시된 문구
+    private float remainingTime; // 제한 시간
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         miniGamePanel.SetActive(false);
+        IsPlaying = false;
+
+        if (playerMovement == null)
+        {
+            playerMovement = FindFirstObjectByType<Character_move>();
+        }
 
         if (inputField != null)
         {
-            // 입력칸의 내용이 바뀔 때마다 정답과 같은지 검사합니다.
             inputField.onValueChanged.AddListener(CheckInput);
         }
     }
 
     public void StartMiniGame(Action successCallback, Action failCallback)
     {
+        if (isPlaying) return;
+
         onSuccess = successCallback;
         onFail = failCallback;
 
         isPlaying = true;
+        IsPlaying = true;
         remainingTime = timeLimit;
         currentSentence = GetRandomSentence();
 
+        SetPlayerControl(false);
         miniGamePanel.SetActive(true);
 
         if (QuestionText != null)
@@ -88,7 +99,6 @@ public class HackMiniGame : MonoBehaviour
         UpdateTimerText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isPlaying) return;
@@ -117,13 +127,8 @@ public class HackMiniGame : MonoBehaviour
         {
             return "ACCESS NODE";
         }
-        // 문제 발생시 ACCESS NODE 출력되도록 세팅
-
 
         int index = UnityEngine.Random.Range(0, hackSentences.Length);
-        // System에도 Random이 있고, UnityEngine에도 랜덤이 있다.
-        // 어디의 Random을 사용해야할지 명시
-
         return hackSentences[index];
     }
 
@@ -142,12 +147,13 @@ public class HackMiniGame : MonoBehaviour
         if (timerText == null) return;
 
         timerText.text = Mathf.CeilToInt(remainingTime).ToString();
-        // Mathf.CeilToInt = 소수점 올림
     }
 
     private void Success()
     {
         isPlaying = false;
+        IsPlaying = false;
+        SetPlayerControl(true);
         miniGamePanel.SetActive(false);
 
         // Hack_Node의 OnMiniGameSuccess가 여기서 실행됩니다.
@@ -157,6 +163,8 @@ public class HackMiniGame : MonoBehaviour
     private void Fail()
     {
         isPlaying = false;
+        IsPlaying = false;
+        SetPlayerControl(true);
 
         if (resultText != null)
         {
@@ -165,5 +173,13 @@ public class HackMiniGame : MonoBehaviour
 
         miniGamePanel.SetActive(false);
         onFail?.Invoke();
+    }
+
+    private void SetPlayerControl(bool canControl)
+    {
+        if (playerMovement != null)
+        {
+            playerMovement.SetCanMove(canControl);
+        }
     }
 }

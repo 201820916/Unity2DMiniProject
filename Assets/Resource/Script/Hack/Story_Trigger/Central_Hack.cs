@@ -20,6 +20,8 @@ public class Central_Hack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (HackMiniGame.IsPlaying) return;
+
         if (!isNear) return;
 
         if (isInstalled) return;

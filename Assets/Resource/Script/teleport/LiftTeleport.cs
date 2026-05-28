@@ -10,6 +10,8 @@ public class LiftTeleport : MonoBehaviour
 
     private void Update()
     {
+        if (HackMiniGame.IsPlaying) return;
+
         if (playerInRange != null && Input.GetKeyDown(KeyCode.E))
         {
             playerInRange.transform.position = destination.position;
