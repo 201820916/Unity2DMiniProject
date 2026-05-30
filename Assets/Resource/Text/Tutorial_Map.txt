@@ -48,6 +48,12 @@
       ]
     },
     {
+      "id": "teleport",
+      "lines": [
+        "사다리, 문 앞에서 E를 누르면\n이동이 가능해"
+      ]
+    },
+    {
       "id": "backdoor_complete",
       "lines": [
         "백도어 설치 완료.",
