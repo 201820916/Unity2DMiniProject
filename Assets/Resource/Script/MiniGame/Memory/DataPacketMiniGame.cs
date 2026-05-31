@@ -80,7 +80,6 @@ public class DataPacketMiniGame : MonoBehaviour
         onFail = failCallback;
 
         isPlaying = true;
-        IsPlaying = true;
         remainingTime = timeLimit;
         expectedNumber = 1;
 
