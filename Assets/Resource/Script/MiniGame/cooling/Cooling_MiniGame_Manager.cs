@@ -41,7 +41,7 @@ public class Cooling_MiniGame_Manager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) return;
+        if (!collision.CompareTag("Player")) return;
         isNear = false;
         mark.SetActive(false);
     }

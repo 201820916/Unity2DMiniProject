@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LiftTeleport : MonoBehaviour
 {
@@ -15,6 +15,11 @@ public class LiftTeleport : MonoBehaviour
         if (playerInRange != null && Input.GetKeyDown(KeyCode.E))
         {
             playerInRange.transform.position = destination.position;
+
+            if (MainPursuerController.Instance != null)
+            {
+                MainPursuerController.Instance.OnPlayerTeleported(destination.position);
+            }
         }
     }
 
@@ -34,3 +39,4 @@ public class LiftTeleport : MonoBehaviour
         }
     }
 }
+

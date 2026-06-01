@@ -2,82 +2,46 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum EnemyState
-    {
-        Patrol,
-        Chase
-    }
+    [SerializeField] private Transform player;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float stopDistance = 1.5f;
+    [SerializeField] private Vector3 teleportOffset = new Vector3(-5f, 0f, 0f);
+    [SerializeField] private SpriteRenderer enemySprite;
+    [SerializeField] private Animator enemyAnimator;
 
-    [Header("State")]
-    [SerializeField] private EnemyState currentState = EnemyState.Patrol;
-
-    [Header("Patrol")]
-    [SerializeField] private Transform pointA;
-    [SerializeField] private Transform pointB;
-    [SerializeField] private float patrolSpeed = 2f;
-
-    [Header("Chase")]
-    [SerializeField] private float chaseSpeed = 4f;
-
-    private Rigidbody2D rb;
-    private Transform patrolTarget;
-    private Transform chaseTarget;
+    public Vector3 PlayerPosition { get; private set; }
+    public Vector3 EnemyPosition { get; private set; }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        patrolTarget = pointB;
+        
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (currentState == EnemyState.Patrol)
-        {
-            Patrol();
-        }
-        else if (currentState == EnemyState.Chase)
-        {
-            Chase();
-        }
+
+        if (player == null || enemy == null) return;
+
+
+        PlayerPosition = player.transform.position;
+        
+        EnemyPosition = enemy.transform.position;
+
+        UpdatePosition();
     }
 
-    private void Patrol()
+    private void UpdatePosition()
     {
-        if (pointA == null || pointB == null) return;
+        float distance = Mathf.Abs(playerPosition.x - enemyPosition.x);
 
-        float direction = Mathf.Sign(patrolTarget.position.x - transform.position.x);
-
-
-        rb.linearVelocity = new Vector2(direction * patrolSpeed, rb.linearVelocity.y);
-
-        if (Mathf.Abs(transform.position.x - patrolTarget.position.x) < 0.2f)
+        if (distance <= stopDistance)
         {
-            patrolTarget = patrolTarget == pointA ? pointB : pointA;
-        }
-    }
-
-    private void Chase()
-    {
-        if (chaseTarget == null)
-        {
-            currentState = EnemyState.Patrol;
             return;
         }
 
-        float direction = Mathf.Sign(chaseTarget.position.x - transform.position.x);
+        float direction = Mathf.Sign(playerPosition.x - enemyPosition.x);
 
-        rb.linearVelocity = new Vector2(direction * chaseSpeed, rb.linearVelocity.y);
-    }
-
-    public void StartChase(Transform target)
-    {
-        chaseTarget = target;
-        currentState = EnemyState.Chase;
-    }
-
-    public void StopChase()
-    {
-        chaseTarget = null;
-        currentState = EnemyState.Patrol;
+        enemy.transform.position += new Vector3(direction * moveSpeed * Time.deltaTime, 0f, 0f);
     }
 }
