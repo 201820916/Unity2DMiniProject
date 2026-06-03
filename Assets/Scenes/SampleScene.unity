@@ -210,11 +210,73 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &48483220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48483221}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48483221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48483220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.79, y: -3.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 655326091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &70836497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7450534900707895305, guid: f33d09c4cecb0d14e8820946ad88bc22, type: 3}
   m_PrefabInstance: {fileID: 7442079688167419774}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &74595308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74595309}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74595309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74595308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.32, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 503831088}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &75417148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7450534900707895305, guid: f33d09c4cecb0d14e8820946ad88bc22, type: 3}
@@ -605,6 +667,7 @@ Transform:
   - {fileID: 1217512871}
   - {fileID: 1149612558}
   - {fileID: 1458348653}
+  - {fileID: 871615105}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &197744255
@@ -972,6 +1035,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 208144159}
   destination: {fileID: 1063288921}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &208144162
 SpriteRenderer:
   serializedVersion: 2
@@ -1499,6 +1564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 272672357}
   destination: {fileID: 1568296569}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &272672360
 SpriteRenderer:
   serializedVersion: 2
@@ -1921,7 +1988,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 892.96, y: 178.985, z: -10}
+  m_LocalPosition: {x: 1035.96, y: 15.585, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2235,6 +2302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 339810639}
   destination: {fileID: 960615456}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &339810642
 SpriteRenderer:
   serializedVersion: 2
@@ -2620,6 +2689,7 @@ GameObject:
   - component: {fileID: 378608381}
   - component: {fileID: 378608386}
   - component: {fileID: 378608385}
+  - component: {fileID: 378608387}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -2688,8 +2758,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.3222046, y: 5.7400475}
-  m_Size: {x: 8.338318, y: 12.540001}
+  m_Offset: {x: -0.3222046, y: 6.1072617}
+  m_Size: {x: 8.338318, y: 11.8055725}
   m_Direction: 0
 --- !u!212 &378608383
 SpriteRenderer:
@@ -2759,7 +2829,7 @@ Transform:
   m_GameObject: {fileID: 378608380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 818.15, y: 165.56999, z: 0}
+  m_LocalPosition: {x: 624, y: -7.9, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2803,6 +2873,58 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &378608387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378608380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee12bb981d3761246ab194a3739ce99f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  player: {fileID: 7186787144785299785}
+  enemy: {fileID: 378608380}
+  enemySprite: {fileID: 378608383}
+  enemyAnimator: {fileID: 378608385}
+  currentState: 0
+  playerRegionIndex: 4
+  enemyRegionIndex: 6
+  moveSpeed: 2
+  stopDistance: 1.5
+  patrolSpeed: 1.2
+  searchWaitTime: 1.5
+  movePointArriveDistance: 0.15
+  regions:
+  - regionName: memory
+    point: {fileID: 871615105}
+    connectedRegions: 01000000
+  - regionName: powerPlant
+    point: {fileID: 74595309}
+    connectedRegions: 000000000200000004000000
+  - regionName: test_place
+    point: {fileID: 1991108607}
+    connectedRegions: 01000000
+  - regionName: Maintenance
+    point: {fileID: 817061994}
+    connectedRegions: 04000000
+  - regionName: MiddleLobby
+    point: {fileID: 803844900}
+    connectedRegions: 01000000030000000500000007000000
+  - regionName: Production
+    point: {fileID: 1378296336}
+    connectedRegions: 04000000
+  - regionName: Exit
+    point: {fileID: 48483221}
+    connectedRegions: 07000000
+  - regionName: GC
+    point: {fileID: 502902203}
+    connectedRegions: 040000000600000008000000
+  - regionName: Cooling
+    point: {fileID: 1201659645}
+    connectedRegions: 07000000
 --- !u!1 &389366862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,6 +3284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 435514359}
   destination: {fileID: 774087426}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &435514362
 SpriteRenderer:
   serializedVersion: 2
@@ -3630,6 +3754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 482879320}
   destination: {fileID: 321877863}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &482879323
 SpriteRenderer:
   serializedVersion: 2
@@ -3689,6 +3815,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &502902202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502902203}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &502902203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502902202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.68, y: -2.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1540903025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503831087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,6 +3881,7 @@ Transform:
   - {fileID: 1109770414}
   - {fileID: 1017852389}
   - {fileID: 2131852571}
+  - {fileID: 74595309}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &503831089
@@ -4480,6 +4638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 594620323}
   destination: {fileID: 930441096}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &594620326
 SpriteRenderer:
   serializedVersion: 2
@@ -4724,6 +4884,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 630265759}
   destination: {fileID: 827200612}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &630265762
 SpriteRenderer:
   serializedVersion: 2
@@ -4954,6 +5116,7 @@ Transform:
   - {fileID: 2007166512}
   - {fileID: 1083842559}
   - {fileID: 608731564}
+  - {fileID: 48483221}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &655326092
@@ -5448,6 +5611,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 685501595}
   destination: {fileID: 272672357}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &685501598
 SpriteRenderer:
   serializedVersion: 2
@@ -6290,6 +6455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 774087426}
   destination: {fileID: 435514359}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &774087429
 SpriteRenderer:
   serializedVersion: 2
@@ -6776,6 +6943,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881689762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &803844899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803844900}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &803844900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803844899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.54, y: -1.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1161592310}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &804802711
 GameObject:
   m_ObjectHideFlags: 0
@@ -6890,6 +7088,37 @@ Transform:
   - {fileID: 1757572852}
   m_Father: {fileID: 1762365592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &817061993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817061994}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817061994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817061993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.14, y: -2.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925132422}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827200611
 GameObject:
   m_ObjectHideFlags: 0
@@ -6984,6 +7213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 827200612}
   destination: {fileID: 630265759}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &827200615
 SpriteRenderer:
   serializedVersion: 2
@@ -7183,6 +7414,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &871615104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871615105}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &871615105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871615104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.71, y: -2.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 197744254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881689761
 GameObject:
   m_ObjectHideFlags: 0
@@ -7596,6 +7858,7 @@ Transform:
   m_Children:
   - {fileID: 1511290048}
   - {fileID: 1091538566}
+  - {fileID: 817061994}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &925132423
@@ -7751,6 +8014,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 930441096}
   destination: {fileID: 594620323}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &930441099
 SpriteRenderer:
   serializedVersion: 2
@@ -8094,6 +8359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 960615456}
   destination: {fileID: 339810639}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &960615459
 SpriteRenderer:
   serializedVersion: 2
@@ -8553,6 +8820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1063288921}
   destination: {fileID: 208144159}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1063288924
 SpriteRenderer:
   serializedVersion: 2
@@ -9965,6 +10234,7 @@ Transform:
   - {fileID: 9255145}
   - {fileID: 1113634894}
   - {fileID: 2057958451}
+  - {fileID: 803844900}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1161592311
@@ -10157,6 +10427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1185576603}
   destination: {fileID: 1957728088}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1185576606
 SpriteRenderer:
   serializedVersion: 2
@@ -10216,6 +10488,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1201659644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201659645}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201659645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201659644}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.88, y: -2.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2053989462}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209512195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10249,6 +10552,7 @@ Transform:
   - {fileID: 777017943}
   - {fileID: 389366863}
   - {fileID: 75417148}
+  - {fileID: 1991108607}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1209512197
@@ -10898,7 +11202,7 @@ Transform:
   m_GameObject: {fileID: 1249168162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 892.96, y: 178.985, z: -10}
+  m_LocalPosition: {x: 1035.96, y: 15.585, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11723,6 +12027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1330853740}
   destination: {fileID: 1392912474}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1330853743
 SpriteRenderer:
   serializedVersion: 2
@@ -11999,6 +12305,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1378296335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378296336}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378296336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378296335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.93, y: -2.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1520114572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1386529393
 GameObject:
   m_ObjectHideFlags: 0
@@ -12384,6 +12721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1392912474}
   destination: {fileID: 1330853740}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1392912477
 SpriteRenderer:
   serializedVersion: 2
@@ -12694,6 +13033,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1470877650}
   destination: {fileID: 1568296569}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1470877653
 SpriteRenderer:
   serializedVersion: 2
@@ -12847,6 +13188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1486879102}
   destination: {fileID: 1928908304}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1486879105
 SpriteRenderer:
   serializedVersion: 2
@@ -13108,6 +13451,7 @@ Transform:
   - {fileID: 349828432}
   - {fileID: 1867951564}
   - {fileID: 1324222108}
+  - {fileID: 1378296336}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1520114573
@@ -13341,6 +13685,7 @@ Transform:
   - {fileID: 718898430}
   - {fileID: 633195781}
   - {fileID: 673290267}
+  - {fileID: 502902203}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1540903026
@@ -13755,6 +14100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1568296569}
   destination: {fileID: 1470877650}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1568296572
 SpriteRenderer:
   serializedVersion: 2
@@ -14093,6 +14440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1630431828}
   destination: {fileID: 1956141233}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1630431831
 SpriteRenderer:
   serializedVersion: 2
@@ -22626,6 +22975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1928908304}
   destination: {fileID: 1486879102}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1928908307
 SpriteRenderer:
   serializedVersion: 2
@@ -22779,6 +23130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1956141233}
   destination: {fileID: 1630431828}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1956141236
 SpriteRenderer:
   serializedVersion: 2
@@ -22932,6 +23285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiftTeleport
   startPoint: {fileID: 1185576603}
   destination: {fileID: 1185576603}
+  enemyAI: {fileID: 0}
+  destinationRegionIndex: 0
 --- !u!212 &1957728091
 SpriteRenderer:
   serializedVersion: 2
@@ -23112,6 +23467,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961540350}
   m_CullTransparentMesh: 1
+--- !u!1 &1991108606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991108607}
+  m_Layer: 0
+  m_Name: EnemyMovePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1991108607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991108606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.99, y: -2.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1209512196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2007166511
 GameObject:
   m_ObjectHideFlags: 0
@@ -23945,6 +24331,7 @@ Transform:
   - {fileID: 337589302}
   - {fileID: 156119729}
   - {fileID: 2011028568}
+  - {fileID: 1201659645}
   m_Father: {fileID: 1791157614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2053989463
@@ -25378,7 +25765,7 @@ Transform:
   m_GameObject: {fileID: 2703553879656954545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 913.7, y: 165, z: 0}
+  m_LocalPosition: {x: 1056.7, y: 1.6, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
