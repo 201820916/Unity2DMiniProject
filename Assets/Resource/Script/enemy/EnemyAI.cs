@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class RegionMovePoints
@@ -7,7 +8,10 @@ public class RegionMovePoints
     public string regionName;
 
     // 해당 지역에서 추적자가 도착하거나 대기할 기준 위치입니다.
-    public Transform point;
+    public Transform teleportPoint;
+
+    [FormerlySerializedAs("point")]
+    public Transform patrolPoint;
 
     // 이 지역에서 이동 가능한 다음 지역 번호입니다.
     // Unity 배열 기준이라 1번 지역은 0, 2번 지역은 1처럼 0부터 입력합니다.
@@ -43,6 +47,8 @@ public class EnemyAI : MonoBehaviour
 
     private Transform currentMovePoint;
     private int currentMovePointRegionIndex;
+    private int pendingTeleportDestinationRegionIndex = -1;
+    private EnemyState stateAfterTeleport = EnemyState.Patrol;
     private float waitTimer;
     private bool isWaitingAtMovePoint;
 
@@ -52,7 +58,9 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyState
     {
         Patrol,
-        Chase
+        Chase,
+        MoveToTeleport,
+        MoveToPatrolPoint
     }
 
     private void Start()
@@ -77,16 +85,36 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.Chase:
                 UpdateChase();
                 break;
+
+            case EnemyState.MoveToTeleport:
+                UpdateMoveToTeleport();
+                break;
+
+            case EnemyState.MoveToPatrolPoint:
+                UpdateMoveToPatrolPoint();
+                break;
         }
     }
 
-    private Transform GetRegionPoint(int regionIndex)
+    private bool IsValidRegionIndex(int regionIndex)
     {
-        // 잘못된 지역 번호가 들어오면 포인트를 찾지 않습니다.
-        if (regions == null || regions.Length == 0) return null;
-        if (regionIndex < 0 || regionIndex >= regions.Length) return null;
+        return regions != null && regionIndex >= 0 && regionIndex < regions.Length;
+    }
 
-        return regions[regionIndex].point;
+    private Transform GetTeleportPoint(int regionIndex)
+    {
+        if (!IsValidRegionIndex(regionIndex)) return null;
+
+        Transform teleportPoint = regions[regionIndex].teleportPoint;
+        return teleportPoint != null ? teleportPoint : GetPatrolPoint(regionIndex);
+    }
+
+    private Transform GetPatrolPoint(int regionIndex)
+    {
+        if (!IsValidRegionIndex(regionIndex)) return null;
+
+        Transform patrolPoint = regions[regionIndex].patrolPoint;
+        return patrolPoint != null ? patrolPoint : regions[regionIndex].teleportPoint;
     }
 
     private int[] GetConnectedRegions(int regionIndex)
@@ -113,7 +141,7 @@ public class EnemyAI : MonoBehaviour
         {
             int randomIndex = Random.Range(0, connectedRegions.Length);
             int randomRegionIndex = connectedRegions[randomIndex];
-            Transform randomPoint = GetRegionPoint(randomRegionIndex);
+            Transform randomPoint = GetPatrolPoint(randomRegionIndex);
 
             if (randomPoint == null) continue;
 
@@ -154,27 +182,18 @@ public class EnemyAI : MonoBehaviour
         // 지금 구조에서는 지역 사이 이동을 텔레포트로 처리합니다.
         if (currentMovePointRegionIndex != enemyRegionIndex)
         {
-            UseTeleport(currentMovePointRegionIndex);
+            BeginMoveToTeleport(currentMovePointRegionIndex, EnemyState.Patrol);
             return;
         }
 
         // 같은 지역 안에서는 Y축 이동 없이 X축만 보고 목표 포인트까지 이동합니다.
-        float distance = Mathf.Abs(EnemyPosition.x - currentMovePoint.position.x);
-
-        if (distance <= movePointArriveDistance)
+        if (MoveTowardPoint(currentMovePoint, patrolSpeed))
         {
             waitTimer = searchWaitTime;
             isWaitingAtMovePoint = true;
             SetMoving(false);
             return;
         }
-
-        float direction = Mathf.Sign(currentMovePoint.position.x - EnemyPosition.x);
-
-        SetDirection(direction);
-        SetMoving(true);
-
-        enemy.transform.position += new Vector3(direction * patrolSpeed * Time.deltaTime, 0f, 0f);
     }
 
     private void UpdateChase()
@@ -186,7 +205,7 @@ public class EnemyAI : MonoBehaviour
 
             if (nextRegionIndex != -1)
             {
-                UseTeleport(nextRegionIndex);
+                BeginMoveToTeleport(nextRegionIndex, EnemyState.Chase);
             }
             else
             {
@@ -205,12 +224,114 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        float direction = Mathf.Sign(PlayerPosition.x - EnemyPosition.x);
+        MoveTowardPosition(PlayerPosition, moveSpeed);
+    }
 
-        SetDirection(direction);
+    private void BeginMoveToTeleport(int destinationRegionIndex, EnemyState resumeState)
+    {
+        if (!IsValidRegionIndex(destinationRegionIndex)) return;
+
+        pendingTeleportDestinationRegionIndex = destinationRegionIndex;
+        stateAfterTeleport = resumeState;
+        isWaitingAtMovePoint = false;
+
+        currentMovePoint = GetTeleportPoint(enemyRegionIndex);
+        currentMovePointRegionIndex = enemyRegionIndex;
+
+        if (currentMovePoint == null)
+        {
+            UseTeleport(destinationRegionIndex);
+            return;
+        }
+
+        currentState = EnemyState.MoveToTeleport;
+    }
+
+    private void UpdateMoveToTeleport()
+    {
+        if (!IsValidRegionIndex(pendingTeleportDestinationRegionIndex))
+        {
+            currentState = stateAfterTeleport;
+            SetMoving(false);
+            return;
+        }
+
+        if (currentMovePoint == null || currentMovePointRegionIndex != enemyRegionIndex)
+        {
+            currentMovePoint = GetTeleportPoint(enemyRegionIndex);
+            currentMovePointRegionIndex = enemyRegionIndex;
+        }
+
+        if (currentMovePoint == null || MoveTowardPoint(currentMovePoint, GetCurrentTravelSpeed()))
+        {
+            UseTeleport(pendingTeleportDestinationRegionIndex);
+        }
+    }
+
+    private void UpdateMoveToPatrolPoint()
+    {
+        if (currentMovePoint == null || MoveTowardPoint(currentMovePoint, GetCurrentTravelSpeed()))
+        {
+            FinishTeleportMovement();
+        }
+    }
+
+    private void FinishTeleportMovement()
+    {
+        EnemyState nextState = stateAfterTeleport;
+
+        pendingTeleportDestinationRegionIndex = -1;
+        stateAfterTeleport = EnemyState.Patrol;
+        SetMoving(false);
+
+        if (nextState == EnemyState.Patrol)
+        {
+            currentState = EnemyState.Patrol;
+            currentMovePoint = GetPatrolPoint(enemyRegionIndex);
+            currentMovePointRegionIndex = enemyRegionIndex;
+            waitTimer = searchWaitTime;
+            isWaitingAtMovePoint = true;
+            return;
+        }
+
+        currentState = nextState;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
+    }
+
+    private float GetCurrentTravelSpeed()
+    {
+        return stateAfterTeleport == EnemyState.Chase ? moveSpeed : patrolSpeed;
+    }
+
+    private bool MoveTowardPoint(Transform targetPoint, float speed)
+    {
+        if (targetPoint == null) return false;
+
+        return MoveTowardPosition(targetPoint.position, speed);
+    }
+
+    private bool MoveTowardPosition(Vector3 targetPosition, float speed)
+    {
+        if (enemy == null) return false;
+
+        Vector3 currentPosition = enemy.transform.position;
+        float deltaX = targetPosition.x - currentPosition.x;
+
+        if (Mathf.Abs(deltaX) <= movePointArriveDistance)
+        {
+            SetMoving(false);
+            return true;
+        }
+
+        float maxStep = Mathf.Max(0f, speed) * Time.deltaTime;
+        float stepX = Mathf.Clamp(deltaX, -maxStep, maxStep);
+
+        SetDirection(stepX);
         SetMoving(true);
+        enemy.transform.position = new Vector3(currentPosition.x + stepX, currentPosition.y, currentPosition.z);
 
-        enemy.transform.position += new Vector3(direction * moveSpeed * Time.deltaTime, 0f, 0f);
+        return false;
     }
 
     private int FindNextRegionTowardPlayer()
@@ -309,6 +430,8 @@ public class EnemyAI : MonoBehaviour
     {
         // 필요할 때 추적자의 현재 지역을 직접 맞춰주기 위한 함수입니다.
         enemyRegionIndex = regionIndex;
+        pendingTeleportDestinationRegionIndex = -1;
+        stateAfterTeleport = EnemyState.Patrol;
         isWaitingAtMovePoint = false;
         PickConnectedMovePoint();
     }
@@ -320,16 +443,16 @@ public class EnemyAI : MonoBehaviour
         if (regions == null || regions.Length == 0) return;
         if (destinationRegionIndex < 0 || destinationRegionIndex >= regions.Length) return;
 
-        Transform destinationPoint = GetRegionPoint(destinationRegionIndex);
+        Transform destinationPoint = GetTeleportPoint(destinationRegionIndex);
         if (destinationPoint == null) return;
 
         enemyRegionIndex = destinationRegionIndex;
-        currentMovePoint = destinationPoint;
+        currentMovePoint = GetPatrolPoint(destinationRegionIndex);
         currentMovePointRegionIndex = destinationRegionIndex;
 
         enemy.transform.position = destinationPoint.position;
-        waitTimer = searchWaitTime;
-        isWaitingAtMovePoint = true;
+        isWaitingAtMovePoint = false;
+        currentState = EnemyState.MoveToPatrolPoint;
         SetMoving(false);
     }
 

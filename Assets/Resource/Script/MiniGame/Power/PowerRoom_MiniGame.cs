@@ -2,12 +2,12 @@ using TMPro;
 using UnityEngine;
 using System;
 
-public class CoolingRoom_MiniGame : MonoBehaviour
+public class PowerRoom_MiniGame : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private GameObject CoolNode;
     [SerializeField] private GameObject MiniGamePanel;
-    [SerializeField] private GameObject coolingGameGroup;
+    [SerializeField] private GameObject PowerGameGroup;
     [SerializeField] private TMP_Text Count;
     [SerializeField] private TMP_Text Question;
     [SerializeField] private TMP_Text submit;
@@ -19,25 +19,24 @@ public class CoolingRoom_MiniGame : MonoBehaviour
     [Header("Game Rule")]
     [SerializeField] private float pressureUpSpeed = 0.8f;
     [SerializeField] private float pressureDownSpeed = 0.6f;
-    [SerializeField] private int Sucesscount = 0;
-    [SerializeField] private float QuestionNumber = 0;
-    [SerializeField] private int requiredSuccessCount = 3;
-    [SerializeField] private float answerTolerance = 5f;
-    [SerializeField] private int minQuestionNumber = 10;
-    [SerializeField] private int maxQuestionNumber = 90;
+    [SerializeField] private float stableMinPressure = 45f;
+    [SerializeField] private float stableMaxPressure = 60f;
+    [SerializeField] private float requiredStableTime = 3f;
+    [SerializeField] private float unstableDrainSpeed = 1f;
 
     private float pressure = 0f;
+    private float stableTimer = 0f;
     private bool isPlaying;
-    private float score;
     private Action onSuccess;
-    private float answer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         pressure = 0.5f;
-        score = 0f;
+        stableTimer = 0f;
         UpdateNeedleUI();
+        UpdatePressureUI();
 
 
         isPlaying = false;
@@ -47,12 +46,10 @@ public class CoolingRoom_MiniGame : MonoBehaviour
             MiniGamePanel.SetActive(false);
         }
 
-        if (coolingGameGroup != null )
+        if (PowerGameGroup != null )
         {
-            coolingGameGroup.SetActive(false);
+            PowerGameGroup.SetActive(false);
         }
-
-        score = 0f;
 
         if (playerMovement == null)
         {
@@ -68,12 +65,8 @@ public class CoolingRoom_MiniGame : MonoBehaviour
 
         UpdatePressure();
         UpdateNeedleUI();
-        UpdateQuestionUI();
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SubmitPressure();
-        }
+        UpdateStableTimer();
+        UpdatePressureUI();
     }
 
     public void StartMiniGame(Action successCallback, Action failCallback)
@@ -84,11 +77,9 @@ public class CoolingRoom_MiniGame : MonoBehaviour
 
         SetPlayerControl(false);
         pressure = 0.5f;
-        Sucesscount = 0;
-        answer = 0f;
-        SetNewQuestion();
+        stableTimer = 0f;
         UpdateNeedleUI();
-        UpdateQuestionUI();
+        UpdatePressureUI();
 
         isPlaying = true;
 
@@ -97,9 +88,9 @@ public class CoolingRoom_MiniGame : MonoBehaviour
             MiniGamePanel.SetActive(true);
         }
 
-        if (coolingGameGroup != null)
+        if (PowerGameGroup != null)
         {
-            coolingGameGroup.SetActive(true);
+            PowerGameGroup.SetActive(true);
         }
 
     }
@@ -119,7 +110,6 @@ public class CoolingRoom_MiniGame : MonoBehaviour
         pressure = Mathf.Clamp01(pressure);
     }
 
-
     private void UpdateNeedleUI()
     {
         if (needle == null) return;
@@ -129,56 +119,49 @@ public class CoolingRoom_MiniGame : MonoBehaviour
         needle.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-
-
-    private void SetNewQuestion()
+    private void UpdateStableTimer()
     {
-        QuestionNumber = UnityEngine.Random.Range(minQuestionNumber, maxQuestionNumber + 1);
+        float currentPressure = GetCurrentPressure();
+        bool isStable = currentPressure >= stableMinPressure && currentPressure <= stableMaxPressure;
+
+        if (isStable)
+        {
+            stableTimer += Time.deltaTime;
+
+            if (stableTimer >= requiredStableTime)
+            {
+                Success();
+            }
+
+            return;
+        }
+
+        stableTimer = Mathf.Max(0f, stableTimer - unstableDrainSpeed * Time.deltaTime);
     }
 
-    private void UpdateQuestionUI()
+    private void UpdatePressureUI()
     {
+        float currentPressure = GetCurrentPressure();
+
         if (Question != null)
         {
-            Question.text = "TARGET : " + QuestionNumber.ToString("0");
+            Question.text = "COOLANT PRESSURE";
         }
 
         if (Count != null)
         {
-            Count.text = Sucesscount + " / " + requiredSuccessCount;
+            Count.text = "STABLE " + stableTimer.ToString("0.0") + " / " + requiredStableTime.ToString("0.0");
         }
 
         if (submit != null)
         {
-            submit.text = "your answer : " + answer.ToString("0");
+            submit.text = currentPressure.ToString("0") + " PSI";
         }
     }
 
-    private void SubmitPressure()
+    private float GetCurrentPressure()
     {
-        float currentPressure = pressure * 100f;
-        answer = currentPressure;
-        UpdateQuestionUI();
-
-        float difference = Mathf.Abs(currentPressure - QuestionNumber);
-
-        if (difference <= answerTolerance)
-        {
-            Sucesscount++;
-
-            if (Sucesscount >= requiredSuccessCount)
-            {
-                Success();
-                return;
-            }
-
-            SetNewQuestion();
-            UpdateQuestionUI();
-        }
-        else
-        {
-            UpdateQuestionUI();
-        }
+        return pressure * 100f;
     }
 
     private void Success()
@@ -189,7 +172,10 @@ public class CoolingRoom_MiniGame : MonoBehaviour
         {
             MiniGamePanel.SetActive(false);
         }
-        coolingGameGroup.SetActive(false);
+        if (PowerGameGroup != null)
+        {
+            PowerGameGroup.SetActive(false);
+        }
         onSuccess?.Invoke();
     }
 

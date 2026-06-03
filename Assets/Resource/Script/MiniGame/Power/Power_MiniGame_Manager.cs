@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Cooling_MiniGame_Manager : MonoBehaviour
+public class Power_MiniGame_Manager : MonoBehaviour
 {
-    [SerializeField] private GameObject CoolingNode;
-    [SerializeField] private CoolingRoom_MiniGame C_MiniGame;
+    [SerializeField] private GameObject PowerNode;
+    [SerializeField] private PowerRoom_MiniGame C_MiniGame;
     [SerializeField] private GameObject mark;
 
     bool isHack;
