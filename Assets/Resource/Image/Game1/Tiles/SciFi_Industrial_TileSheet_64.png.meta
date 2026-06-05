@@ -1,0 +1,1527 @@
+﻿fileFormatVersion: 2
+guid: 480c6027eeea4043a20ffa2a8616040c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 1024
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab640389d8d0453da8af70084062090e
+      internalID: 1000000000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2324dd364548b6b1ac0407106305d8
+      internalID: 1000000001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bff5daef00f4df9868612af3cc8e7f1
+      internalID: 1000000002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8614c8bb5b0b44c79c9581abc7080e4b
+      internalID: 1000000003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_04
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deee1867e66b4354820c75f6a5a6ef75
+      internalID: 1000000004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_05
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57f7cdf2b0fd4dc08b02047cd629eba1
+      internalID: 1000000005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_06
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ff1a166559423187c3d0427102da3b
+      internalID: 1000000006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_07
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71462f21be0c4045a800438bf611e50f
+      internalID: 1000000007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b1a8b1abcf4f7d8ea9beb3f466c9c1
+      internalID: 1000000008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_09
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6222c928a1244f7eb60497bd0e6eaf50
+      internalID: 1000000009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efea894c35f4effa9e94172f442b02b
+      internalID: 1000000010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e060121f90b0455ab999d28b86928273
+      internalID: 1000000011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be74fd185c44b3db56d90e8e33470d5
+      internalID: 1000000012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0258a79468f749dd94a0eca411f039a2
+      internalID: 1000000013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_14
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec78bfb09db4f2bb613598171603860
+      internalID: 1000000014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df89c65c577f4f01b9883d8725ad4c8a
+      internalID: 1000000015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5bb20fb180438d930e8ab6c29d928c
+      internalID: 1000000016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c498c80ada3443bda94e3258c7f54589
+      internalID: 1000000017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79c4c2b250849d88b0f16fe023a535b
+      internalID: 1000000018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0018fb6e704f4fbc14299f9e6bd97c
+      internalID: 1000000019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d31074a0004e238e3d5081c775d044
+      internalID: 1000000020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_21
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74ada61ffe84b7e930405d48e58d695
+      internalID: 1000000021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_22
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afd6e5701ec04348926900ca59a8b694
+      internalID: 1000000022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_23
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883c932a172c41bd8bd904116c5bc59a
+      internalID: 1000000023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f003c46ae94403b6c904fb1b77c1d8
+      internalID: 1000000024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e807603c0054ee4833a82eeaccccbf9
+      internalID: 1000000025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763bbcbab76649dab5f91470ffd03bf9
+      internalID: 1000000026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fd909430ae462ca2de01b78b4d4ad7
+      internalID: 1000000027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7015a20906848deb051b512ca17dcdc
+      internalID: 1000000028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd570d23065445f96aa90db135b7619
+      internalID: 1000000029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_30
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5bdce6b6964d94897bbec82775e3d5
+      internalID: 1000000030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_31
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ca966ee605412da15d451715dfb6ae
+      internalID: 1000000031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f220d225b449408cd5920b40bf2639
+      internalID: 1000000032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_33
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f23651622b4fcd80737eb55976aebb
+      internalID: 1000000033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad69a165d61847deaec019cde65440c9
+      internalID: 1000000034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e227b6a8a514a9c8318e8fb206db085
+      internalID: 1000000035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_36
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d2336e318747e593b1d01f0fa869fb
+      internalID: 1000000036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_37
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7894f2def9d41b1aa51b4491c37f34a
+      internalID: 1000000037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_38
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a659f09eb67415183d23baa07d876a4
+      internalID: 1000000038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7374f788e774d22b669a5efd9d8d590
+      internalID: 1000000039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f1154e6dc1e4184bd338914e3399d92
+      internalID: 1000000040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_41
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd394aea121f4aa98bac5af7014dabac
+      internalID: 1000000041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_42
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd9ff48c32440dfae697c217afb5df6
+      internalID: 1000000042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2fd1bf02900450fa3823f06b12c74b3
+      internalID: 1000000043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c3d1b189d384807b0382d0e1b728b21
+      internalID: 1000000044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_45
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81127ed6fe1a4ee3ad1849fc1f38bcd4
+      internalID: 1000000045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_46
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df6b7b845c7471281e0b6bda5f7ae82
+      internalID: 1000000046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_47
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5bde3f273947b7891a8e0f8572aebb
+      internalID: 1000000047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8944807ede24f06ab7b12969d0c9c0d
+      internalID: 1000000048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_49
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f46348de1fb40a6a8772df2e502b2ea
+      internalID: 1000000049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ceef84bbb34a769a841e0350034ef3
+      internalID: 1000000050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_51
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec64adec8204e669258328e93164b0e
+      internalID: 1000000051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_52
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124d8c0d346c4434a76fe9092d1499b0
+      internalID: 1000000052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_53
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795d6aa3bf6f44168ef96e0916d4256f
+      internalID: 1000000053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_54
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f22446cb2a4fca93dd70e6a3609089
+      internalID: 1000000054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_55
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fadbaa6e6b5427988d4e5a48b2dc436
+      internalID: 1000000055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478d53f65be64752ac48bd290fa272e8
+      internalID: 1000000056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_57
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3239a753be9340dda104af14d46d6bae
+      internalID: 1000000057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_58
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb6bc2743184f8a805c70a929598af1
+      internalID: 1000000058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_59
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa7378e149549a4b951d8f64b3f331c
+      internalID: 1000000059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_60
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3372d797ff6c47a89c4b9af38cda67a5
+      internalID: 1000000060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_61
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a76301ea34431198d71a11936bd11d
+      internalID: 1000000061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_62
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08ac3602022422ab138fb19f90640db
+      internalID: 1000000062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    - serializedVersion: 2
+      name: SciFi_Industrial_Tile_63
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255e9d3bf1e0433596a4c7f0bd038b22
+      internalID: 1000000063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ffbc0b9e94ca402aad53299224129342
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":true,"gridCellCount":{"x":8.0,"y":8.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SciFi_Industrial_Tile_00: 1000000000
+      SciFi_Industrial_Tile_01: 1000000001
+      SciFi_Industrial_Tile_02: 1000000002
+      SciFi_Industrial_Tile_03: 1000000003
+      SciFi_Industrial_Tile_04: 1000000004
+      SciFi_Industrial_Tile_05: 1000000005
+      SciFi_Industrial_Tile_06: 1000000006
+      SciFi_Industrial_Tile_07: 1000000007
+      SciFi_Industrial_Tile_08: 1000000008
+      SciFi_Industrial_Tile_09: 1000000009
+      SciFi_Industrial_Tile_10: 1000000010
+      SciFi_Industrial_Tile_11: 1000000011
+      SciFi_Industrial_Tile_12: 1000000012
+      SciFi_Industrial_Tile_13: 1000000013
+      SciFi_Industrial_Tile_14: 1000000014
+      SciFi_Industrial_Tile_15: 1000000015
+      SciFi_Industrial_Tile_16: 1000000016
+      SciFi_Industrial_Tile_17: 1000000017
+      SciFi_Industrial_Tile_18: 1000000018
+      SciFi_Industrial_Tile_19: 1000000019
+      SciFi_Industrial_Tile_20: 1000000020
+      SciFi_Industrial_Tile_21: 1000000021
+      SciFi_Industrial_Tile_22: 1000000022
+      SciFi_Industrial_Tile_23: 1000000023
+      SciFi_Industrial_Tile_24: 1000000024
+      SciFi_Industrial_Tile_25: 1000000025
+      SciFi_Industrial_Tile_26: 1000000026
+      SciFi_Industrial_Tile_27: 1000000027
+      SciFi_Industrial_Tile_28: 1000000028
+      SciFi_Industrial_Tile_29: 1000000029
+      SciFi_Industrial_Tile_30: 1000000030
+      SciFi_Industrial_Tile_31: 1000000031
+      SciFi_Industrial_Tile_32: 1000000032
+      SciFi_Industrial_Tile_33: 1000000033
+      SciFi_Industrial_Tile_34: 1000000034
+      SciFi_Industrial_Tile_35: 1000000035
+      SciFi_Industrial_Tile_36: 1000000036
+      SciFi_Industrial_Tile_37: 1000000037
+      SciFi_Industrial_Tile_38: 1000000038
+      SciFi_Industrial_Tile_39: 1000000039
+      SciFi_Industrial_Tile_40: 1000000040
+      SciFi_Industrial_Tile_41: 1000000041
+      SciFi_Industrial_Tile_42: 1000000042
+      SciFi_Industrial_Tile_43: 1000000043
+      SciFi_Industrial_Tile_44: 1000000044
+      SciFi_Industrial_Tile_45: 1000000045
+      SciFi_Industrial_Tile_46: 1000000046
+      SciFi_Industrial_Tile_47: 1000000047
+      SciFi_Industrial_Tile_48: 1000000048
+      SciFi_Industrial_Tile_49: 1000000049
+      SciFi_Industrial_Tile_50: 1000000050
+      SciFi_Industrial_Tile_51: 1000000051
+      SciFi_Industrial_Tile_52: 1000000052
+      SciFi_Industrial_Tile_53: 1000000053
+      SciFi_Industrial_Tile_54: 1000000054
+      SciFi_Industrial_Tile_55: 1000000055
+      SciFi_Industrial_Tile_56: 1000000056
+      SciFi_Industrial_Tile_57: 1000000057
+      SciFi_Industrial_Tile_58: 1000000058
+      SciFi_Industrial_Tile_59: 1000000059
+      SciFi_Industrial_Tile_60: 1000000060
+      SciFi_Industrial_Tile_61: 1000000061
+      SciFi_Industrial_Tile_62: 1000000062
+      SciFi_Industrial_Tile_63: 1000000063
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

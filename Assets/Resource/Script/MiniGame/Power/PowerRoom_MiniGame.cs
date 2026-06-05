@@ -19,24 +19,26 @@ public class PowerRoom_MiniGame : MonoBehaviour
     [Header("Game Rule")]
     [SerializeField] private float pressureUpSpeed = 0.8f;
     [SerializeField] private float pressureDownSpeed = 0.6f;
-    [SerializeField] private float stableMinPressure = 45f;
-    [SerializeField] private float stableMaxPressure = 60f;
-    [SerializeField] private float requiredStableTime = 3f;
-    [SerializeField] private float unstableDrainSpeed = 1f;
+    [SerializeField] private int Sucesscount = 0;
+    [SerializeField] private float QuestionNumber = 0;
+    [SerializeField] private int requiredSuccessCount = 3;
+    [SerializeField] private float answerTolerance = 5f;
+    [SerializeField] private int minQuestionNumber = 10;
+    [SerializeField] private int maxQuestionNumber = 90;
 
     private float pressure = 0f;
-    private float stableTimer = 0f;
     private bool isPlaying;
+    private float score;
     private Action onSuccess;
+    private float answer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         pressure = 0.5f;
-        stableTimer = 0f;
+        score = 0f;
         UpdateNeedleUI();
-        UpdatePressureUI();
 
 
         isPlaying = false;
@@ -50,6 +52,8 @@ public class PowerRoom_MiniGame : MonoBehaviour
         {
             PowerGameGroup.SetActive(false);
         }
+
+        score = 0f;
 
         if (playerMovement == null)
         {
@@ -65,8 +69,12 @@ public class PowerRoom_MiniGame : MonoBehaviour
 
         UpdatePressure();
         UpdateNeedleUI();
-        UpdateStableTimer();
-        UpdatePressureUI();
+        UpdateQuestionUI();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SubmitPressure();
+        }
     }
 
     public void StartMiniGame(Action successCallback, Action failCallback)
@@ -77,9 +85,11 @@ public class PowerRoom_MiniGame : MonoBehaviour
 
         SetPlayerControl(false);
         pressure = 0.5f;
-        stableTimer = 0f;
+        Sucesscount = 0;
+        answer = 0f;
+        SetNewQuestion();
         UpdateNeedleUI();
-        UpdatePressureUI();
+        UpdateQuestionUI();
 
         isPlaying = true;
 
@@ -119,49 +129,54 @@ public class PowerRoom_MiniGame : MonoBehaviour
         needle.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    private void UpdateStableTimer()
+    private void SetNewQuestion()
     {
-        float currentPressure = GetCurrentPressure();
-        bool isStable = currentPressure >= stableMinPressure && currentPressure <= stableMaxPressure;
-
-        if (isStable)
-        {
-            stableTimer += Time.deltaTime;
-
-            if (stableTimer >= requiredStableTime)
-            {
-                Success();
-            }
-
-            return;
-        }
-
-        stableTimer = Mathf.Max(0f, stableTimer - unstableDrainSpeed * Time.deltaTime);
+        QuestionNumber = UnityEngine.Random.Range(minQuestionNumber, maxQuestionNumber + 1);
     }
 
-    private void UpdatePressureUI()
+    private void UpdateQuestionUI()
     {
-        float currentPressure = GetCurrentPressure();
-
         if (Question != null)
         {
-            Question.text = "COOLANT PRESSURE";
+            Question.text = "TARGET : " + QuestionNumber.ToString("0");
         }
 
         if (Count != null)
         {
-            Count.text = "STABLE " + stableTimer.ToString("0.0") + " / " + requiredStableTime.ToString("0.0");
+            Count.text = Sucesscount + " / " + requiredSuccessCount;
         }
 
         if (submit != null)
         {
-            submit.text = currentPressure.ToString("0") + " PSI";
+            submit.text = "your answer : " + answer.ToString("0");
         }
     }
 
-    private float GetCurrentPressure()
+    private void SubmitPressure()
     {
-        return pressure * 100f;
+        float currentPressure = pressure * 100f;
+        answer = currentPressure;
+        UpdateQuestionUI();
+
+        float difference = Mathf.Abs(currentPressure - QuestionNumber);
+
+        if (difference <= answerTolerance)
+        {
+            Sucesscount++;
+
+            if (Sucesscount >= requiredSuccessCount)
+            {
+                Success();
+                return;
+            }
+
+            SetNewQuestion();
+            UpdateQuestionUI();
+        }
+        else
+        {
+            UpdateQuestionUI();
+        }
     }
 
     private void Success()
@@ -172,10 +187,7 @@ public class PowerRoom_MiniGame : MonoBehaviour
         {
             MiniGamePanel.SetActive(false);
         }
-        if (PowerGameGroup != null)
-        {
-            PowerGameGroup.SetActive(false);
-        }
+        PowerGameGroup.SetActive(false);
         onSuccess?.Invoke();
     }
 

@@ -41,15 +41,19 @@ public class HackMiniGame : MonoBehaviour
         "UPLOAD KEY"
     };
 
+
     private Action onSuccess; // 성공 콜백
     private Action onFail; // 실패 콜백
-    private bool isPlaying; // 해킹중인가?
     private string currentSentence; // 제시된 문구
     private float remainingTime; // 제한 시간
+    
 
     void Start()
     {
-        miniGamePanel.SetActive(false);
+        if (miniGamePanel != null)
+        {
+            miniGamePanel.SetActive(false);
+        }
         IsPlaying = false;
 
         if (playerMovement == null)
@@ -65,17 +69,20 @@ public class HackMiniGame : MonoBehaviour
 
     public void StartMiniGame(Action successCallback, Action failCallback)
     {
-        if (isPlaying) return;
+        if (IsPlaying) return;
 
         onSuccess = successCallback;
         onFail = failCallback;
 
-        isPlaying = true;
+        IsPlaying = true;
         remainingTime = timeLimit;
         currentSentence = GetRandomSentence();
 
         SetPlayerControl(false);
-        miniGamePanel.SetActive(true);
+        if (miniGamePanel != null)
+        {
+            miniGamePanel.SetActive(true);
+        }
 
         if (QuestionText != null)
         {
@@ -100,22 +107,19 @@ public class HackMiniGame : MonoBehaviour
 
     void Update()
     {
-        if (!isPlaying) return;
+        if (!IsPlaying) return;
 
-        // 미니게임이 진행 중일 때만 제한시간을 줄입니다.
         remainingTime -= Time.deltaTime;
         UpdateTimerText();
 
         if (remainingTime <= 0f)
         {
-            // 시간이 끝나면 실패 처리합니다.
             Fail();
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Esc를 누르면 미니게임을 취소/실패 처리합니다.
             Fail();
         }
     }
@@ -133,7 +137,7 @@ public class HackMiniGame : MonoBehaviour
 
     private void CheckInput(string input)
     {
-        if (!isPlaying) return;
+        if (!IsPlaying) return;
 
         if (string.Equals(input, currentSentence))
         {
@@ -150,17 +154,18 @@ public class HackMiniGame : MonoBehaviour
 
     private void Success()
     {
-        isPlaying = false;
+        IsPlaying = false;
         SetPlayerControl(true);
-        miniGamePanel.SetActive(false);
-
-        // Hack_Node의 OnMiniGameSuccess가 여기서 실행됩니다.
+        if (miniGamePanel != null)
+        {
+            miniGamePanel.SetActive(false);
+        }
         onSuccess?.Invoke();
     }
 
     private void Fail()
     {
-        isPlaying = false;
+        IsPlaying = false;
         SetPlayerControl(true);
 
         if (resultText != null)
@@ -168,7 +173,10 @@ public class HackMiniGame : MonoBehaviour
             resultText.text = "FAILED";
         }
 
-        miniGamePanel.SetActive(false);
+        if (miniGamePanel != null)
+        {
+            miniGamePanel.SetActive(false);
+        }
         onFail?.Invoke();
     }
 
@@ -179,4 +187,5 @@ public class HackMiniGame : MonoBehaviour
             playerMovement.SetCanMove(canControl);
         }
     }
+
 }

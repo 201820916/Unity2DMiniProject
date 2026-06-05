@@ -3,34 +3,34 @@ using UnityEngine;
 public class EnemyAi2 : MonoBehaviour
 {
     [Header("Assets")]
-    [SerializeField] private Transform player;
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private SpriteRenderer enemySprite;
-    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private Transform player; // 추적할 플레이어
+    [SerializeField] private GameObject enemy; // 실제로 추적하는 적
+    [SerializeField] private SpriteRenderer enemySprite; // 방향 전환에 사용될 렌더러
+    [SerializeField] private Animator enemyAnimator; // 애니메이션 제어용
 
     [Header("State")]
-    [SerializeField] private EnemyState currentState = EnemyState.Patrol;
+    [SerializeField] private EnemyState currentState; // 현재 상태
 
     // 3x3 배치에서는 X좌표만으로 지역을 구분할 수 없어 지역 번호를 따로 저장합니다.
-    [SerializeField] private int playerRegionIndex;
-    [SerializeField] private int enemyRegionIndex;
+    [SerializeField] private int playerRegionIndex; // 플레이어 지역 번호
+    [SerializeField] private int enemyRegionIndex; // 적이 있는 지역 번호
 
     [Header("Move")]
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float stopDistance = 1.5f;
-    [SerializeField] private float patrolSpeed = 1.2f;
-    [SerializeField] private float searchWaitTime = 1.5f;
-    [SerializeField] private float movePointArriveDistance = 0.15f;
+    [SerializeField] private float stopDistance = 1.5f; // 플레이어-적 이 이 거리 이하면 적이 멈춤(임시)
+    [SerializeField] private float patrolSpeed = 1.2f; // 패트롤 속도
+    [SerializeField] private float searchWaitTime = 1.5f; // 패트롤 도착 후 대기 시간
+    [SerializeField] private float movePointArriveDistance = 0.15f; // 
 
     [Header("MovePoint")]
     // 9개 지역의 이동 기준점과 연결 정보를 넣습니다.
     // regions[0]은 1번 지역, regions[8]은 9번 지역입니다.
     [SerializeField] private RegionMovePoints[] regions;
 
+
+    [Header("Patrol")]
     private Transform currentMovePoint;
-    private int currentMovePointRegionIndex;
-    private int pendingTeleportDestinationRegionIndex = -1;
-    private EnemyState stateAfterTeleport = EnemyState.Patrol;
+    private int targetRegionIndex = -1;
     private float waitTimer;
     private bool isWaitingAtMovePoint;
 
@@ -48,11 +48,8 @@ public class EnemyAi2 : MonoBehaviour
     private void Start()
     {
         currentState = EnemyState.Patrol;
-        // PickConnectedMovePoint();
-    }
 
-}
-    /*
+    }
     private void Update()
     {
         if (player == null || enemy == null) return;
@@ -77,57 +74,140 @@ public class EnemyAi2 : MonoBehaviour
             case EnemyState.MoveToPatrolPoint:
                 UpdateMoveToPatrolPoint();
                 break;
-        } 
+        }
     }
-    
+
+    private void PickConnectedMovePoint()
+    {
+        if (!IsValidRegionIndex(enemyRegionIndex)) return;
+
+        currentMovePoint = regions[enemyRegionIndex].patrolPoint;
+    }
+
+    private bool IsValidRegionIndex(int regionIndex)
+    {
+        return regions != null && regionIndex >= 0 && regionIndex < regions.Length;
+    }
+
+    private void PickRandomTeleportTarget()
+    {
+        if (!IsValidRegionIndex(enemyRegionIndex)) return;
+
+        int[] connectedRegions = regions[enemyRegionIndex].connectedRegions;
+
+        if (connectedRegions == null || connectedRegions.Length == 0)
+        {
+            currentMovePoint = null;
+            currentState = EnemyState.Patrol;
+            return;
+        }
+
+        int randomIndex = Random.Range(0, connectedRegions.Length);
+        targetRegionIndex = connectedRegions[randomIndex];
+
+        if (!IsValidRegionIndex(targetRegionIndex))
+        {
+            targetRegionIndex = -1;
+            currentMovePoint = null;
+            currentState = EnemyState.Patrol;
+            return;
+        }
+
+        currentState = EnemyState.MoveToTeleport;
+    }
+
+    private void MoveTo(Vector3 targetPosition, float speed)
+    {
+        enemy.transform.position = Vector2.MoveTowards(
+            enemy.transform.position,
+            targetPosition,
+            speed * Time.deltaTime
+        );
+    }
+
     private void PatrolManage()
     {
-        if ( currentMovePoint == null )
+        if( currentMovePoint == null)
         {
             PickConnectedMovePoint();
-            SetMoving(false);
             return;
         }
 
-        if (isWatingAtMovePoint)
+        if (isWaitingAtMovePoint)
         {
-            waitTimer -= Time.deltaTime;
-            SetMoving(false);
-
-            if (waitTimer <= 0f)
-            {
-                isWaitingAtMovePoint = false;
-                PickConnectedMovePoint();
-            }
-
-            return;
+            isWaitingAtMovePoint = false;
         }
+
+        MoveTo(currentMovePoint.position, patrolSpeed);
+
+        float distance = Vector2.Distance(enemy.transform.position, currentMovePoint.position);
+
+        if (distance <= movePointArriveDistance)
+        {
+            PickRandomTeleportTarget();
+        }
+
     }
 
     private void UpdateChase()
     {
+        float distance = Vector2.Distance(enemy.transform.position, player.position);
 
+        if (distance > stopDistance)
+        {
+            MoveTo(player.position, moveSpeed);
+        }
+
+        if (playerRegionIndex != enemyRegionIndex)
+        {
+            currentState = EnemyState.MoveToTeleport;
+        }
+        else
+        {
+            currentState = EnemyState.Chase;
+        }
     }
+
 
     private void UpdateMoveToTeleport()
     {
+        if (!IsValidRegionIndex(enemyRegionIndex)) return;
+        if (!IsValidRegionIndex(targetRegionIndex))
+        {
+            currentState = EnemyState.Patrol;
+            return;
+        }
 
+        Transform targetTeleportPoint = regions[targetRegionIndex].teleportPoint;
+        if (targetTeleportPoint == null) return;
+
+        enemy.transform.position = targetTeleportPoint.position;
+        enemyRegionIndex = targetRegionIndex;
+        targetRegionIndex = -1;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
+
+        currentState = EnemyState.MoveToPatrolPoint;
     }
 
     private void UpdateMoveToPatrolPoint()
     {
+        if (!IsValidRegionIndex(enemyRegionIndex)) return;
 
+        Transform patrolPoint = regions[enemyRegionIndex].patrolPoint;
+        if (patrolPoint == null) return;
+
+        MoveTo(patrolPoint.position, patrolSpeed);
+
+        float distance = Vector2.Distance(enemy.transform.position, patrolPoint.position);
+
+        if (distance <= movePointArriveDistance)
+        {
+            currentMovePoint = patrolPoint;
+            isWaitingAtMovePoint = false;
+            currentState = EnemyState.Patrol;
+        }
     }
-
-    
-
-
-
-    private void PickConnectedMovePoint()
-    {
-
-    }
-
 
 }
-    */
+   
