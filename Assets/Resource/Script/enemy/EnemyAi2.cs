@@ -243,11 +243,32 @@ public class EnemyAi2 : MonoBehaviour
         currentState = EnemyState.Chase;
     }
 
+    public bool IsChasing()
+    {
+        return currentState == EnemyState.Chase || stateAfterTeleport == EnemyState.Chase;
+    }
+
     public void StopChase()
     {
         targetRegionIndex = -1;
         currentMovePoint = null;
         isWaitingAtMovePoint = false;
+        currentState = EnemyState.Patrol;
+    }
+
+    public void TeleportToRegionAndPatrol(int regionIndex)
+    {
+        if (!IsValidRegionIndex(regionIndex)) return;
+
+        Transform teleportPoint = regions[regionIndex].teleportPoint;
+        if (teleportPoint == null) return;
+
+        enemy.transform.position = teleportPoint.position;
+        enemyRegionIndex = regionIndex;
+        targetRegionIndex = -1;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
+        stateAfterTeleport = EnemyState.Patrol;
         currentState = EnemyState.Patrol;
     }
 

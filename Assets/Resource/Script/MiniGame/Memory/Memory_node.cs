@@ -5,7 +5,7 @@ public class Memory_node : MonoBehaviour
     [SerializeField] private GameObject mark;
     [SerializeField] private DataPacketMiniGame miniGame;
 
-    private bool isHack;
+    public bool isHack { get; private set; }
     private bool isPlay;
     private bool isNear;
 

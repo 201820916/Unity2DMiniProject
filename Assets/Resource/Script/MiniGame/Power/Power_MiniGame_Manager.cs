@@ -5,10 +5,9 @@ public class Power_MiniGame_Manager : MonoBehaviour
     [SerializeField] private GameObject PowerNode;
     [SerializeField] private PowerRoom_MiniGame C_MiniGame;
     [SerializeField] private GameObject mark;
-
-    bool isHack;
+    public bool isHack { get; private set; }
     bool isNear;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

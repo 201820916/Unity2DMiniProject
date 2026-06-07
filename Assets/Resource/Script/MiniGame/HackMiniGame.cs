@@ -8,6 +8,8 @@ public class HackMiniGame : MonoBehaviour
 
     [SerializeField] private GameObject miniGamePanel;
 
+    [SerializeField] private GameObject WriteGroup;
+
     [SerializeField] private Character_move playerMovement;
 
     // 플레이어가 따라 입력해야 할 문장을 보여줌.
@@ -54,6 +56,13 @@ public class HackMiniGame : MonoBehaviour
         {
             miniGamePanel.SetActive(false);
         }
+
+        if (WriteGroup != null)
+        {
+            WriteGroup.SetActive(false);
+        }
+
+
         IsPlaying = false;
 
         if (playerMovement == null)
@@ -79,10 +88,18 @@ public class HackMiniGame : MonoBehaviour
         currentSentence = GetRandomSentence();
 
         SetPlayerControl(false);
+
+
         if (miniGamePanel != null)
         {
             miniGamePanel.SetActive(true);
         }
+
+        if (WriteGroup != null)
+        {
+            WriteGroup.SetActive(true);
+        }
+
 
         if (QuestionText != null)
         {
@@ -160,6 +177,11 @@ public class HackMiniGame : MonoBehaviour
         {
             miniGamePanel.SetActive(false);
         }
+
+        if (WriteGroup != null)
+        {
+            WriteGroup.SetActive(false);
+        }
         onSuccess?.Invoke();
     }
 
@@ -177,6 +199,12 @@ public class HackMiniGame : MonoBehaviour
         {
             miniGamePanel.SetActive(false);
         }
+
+        if (WriteGroup != null)
+        {
+            WriteGroup.SetActive(false);
+        }
+
         onFail?.Invoke();
     }
 

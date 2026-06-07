@@ -9,6 +9,7 @@ public class EnemyVisionTrigger : MonoBehaviour
     [SerializeField] private GameObject Vision;
     [SerializeField] private Sprite guardQ;
     [SerializeField] private Sprite guardA;
+    [SerializeField] private bool stopChaseWhenVisionLost = true;
 
     private bool isPlayerInVision;
     private bool isDetected;
@@ -95,6 +96,11 @@ public class EnemyVisionTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         Debug.Log("Enemy vision exit: " + other.name);
+        if (stopChaseWhenVisionLost && isDetected && enemyAI != null)
+        {
+            enemyAI.StopChase();
+        }
+
         isPlayerInVision = false;
         isDetected = false;
         countTimer = 0f;

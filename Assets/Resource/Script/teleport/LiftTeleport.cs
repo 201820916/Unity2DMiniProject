@@ -27,11 +27,19 @@ public class LiftTeleport : MonoBehaviour
             {
                 // 플레이어 지역 번호를 갱신해야 추적자가 다른 줄의 같은 X좌표를 같은 지역으로 착각하지 않습니다.
                 enemyAI.SetPlayerRegion(destinationRegionIndex);
+                enemyAI.StopChase();
             }
 
             if (enemyAi2 != null)
             {
+                bool wasEnemyChasing = enemyAi2.IsChasing();
+
                 enemyAi2.SetPlayerRegion(destinationRegionIndex);
+
+                if (wasEnemyChasing)
+                {
+                    enemyAi2.TeleportToRegionAndPatrol(destinationRegionIndex);
+                }
             }
         }
     }

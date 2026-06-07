@@ -5,7 +5,7 @@ using System;
 public class PowerRoom_MiniGame : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject CoolNode;
+    [SerializeField] private GameObject PowerNode;
     [SerializeField] private GameObject MiniGamePanel;
     [SerializeField] private GameObject PowerGameGroup;
     [SerializeField] private TMP_Text Count;
@@ -43,7 +43,7 @@ public class PowerRoom_MiniGame : MonoBehaviour
 
         isPlaying = false;
 
-        if ( MiniGamePanel != null)
+        if (MiniGamePanel != null)
         {
             MiniGamePanel.SetActive(false);
         }

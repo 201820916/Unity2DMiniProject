@@ -6,7 +6,7 @@ public class HackMiniGameManager : MonoBehaviour
     [SerializeField] private GameObject mark;
 
     private bool isNear;
-    private bool isHack;
+    public bool isHack { get; private set; }
 
     private void Start()
     {
