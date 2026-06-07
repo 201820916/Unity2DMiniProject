@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LightOFF
   - door
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -31,6 +31,7 @@ public class EnemyAi2 : MonoBehaviour
     [Header("Patrol")]
     private Transform currentMovePoint;
     private int targetRegionIndex = -1;
+    private EnemyState stateAfterTeleport = EnemyState.Patrol;
     private float waitTimer;
     private bool isWaitingAtMovePoint;
 
@@ -113,16 +114,33 @@ public class EnemyAi2 : MonoBehaviour
             return;
         }
 
+        stateAfterTeleport = EnemyState.Patrol;
         currentState = EnemyState.MoveToTeleport;
     }
 
     private void MoveTo(Vector3 targetPosition, float speed)
     {
-        enemy.transform.position = Vector2.MoveTowards(
-            enemy.transform.position,
-            targetPosition,
+        Vector3 beforePosition = enemy.transform.position;
+
+        float nextX = Mathf.MoveTowards(
+            beforePosition.x,
+            targetPosition.x,
             speed * Time.deltaTime
         );
+
+        enemy.transform.position = new Vector3(nextX, beforePosition.y, beforePosition.z);
+
+        float directionX = enemy.transform.position.x - beforePosition.x;
+
+        if (enemySprite != null && Mathf.Abs(directionX) > 0.01f)
+        {
+            enemySprite.flipX = directionX < 0f;
+        }
+    }
+
+    private float GetHorizontalDistance(Vector3 firstPosition, Vector3 secondPosition)
+    {
+        return Mathf.Abs(firstPosition.x - secondPosition.x);
     }
 
     private void PatrolManage()
@@ -140,7 +158,7 @@ public class EnemyAi2 : MonoBehaviour
 
         MoveTo(currentMovePoint.position, patrolSpeed);
 
-        float distance = Vector2.Distance(enemy.transform.position, currentMovePoint.position);
+        float distance = GetHorizontalDistance(enemy.transform.position, currentMovePoint.position);
 
         if (distance <= movePointArriveDistance)
         {
@@ -151,21 +169,22 @@ public class EnemyAi2 : MonoBehaviour
 
     private void UpdateChase()
     {
-        float distance = Vector2.Distance(enemy.transform.position, player.position);
+        if (playerRegionIndex != enemyRegionIndex)
+        {
+            targetRegionIndex = playerRegionIndex;
+            stateAfterTeleport = EnemyState.Chase;
+            currentState = EnemyState.MoveToTeleport;
+            return;
+        }
+
+        float distance = GetHorizontalDistance(enemy.transform.position, player.position);
 
         if (distance > stopDistance)
         {
             MoveTo(player.position, moveSpeed);
         }
 
-        if (playerRegionIndex != enemyRegionIndex)
-        {
-            currentState = EnemyState.MoveToTeleport;
-        }
-        else
-        {
-            currentState = EnemyState.Chase;
-        }
+        currentState = EnemyState.Chase;
     }
 
 
@@ -187,6 +206,12 @@ public class EnemyAi2 : MonoBehaviour
         currentMovePoint = null;
         isWaitingAtMovePoint = false;
 
+        if (stateAfterTeleport == EnemyState.Chase)
+        {
+            currentState = EnemyState.Chase;
+            return;
+        }
+
         currentState = EnemyState.MoveToPatrolPoint;
     }
 
@@ -199,14 +224,48 @@ public class EnemyAi2 : MonoBehaviour
 
         MoveTo(patrolPoint.position, patrolSpeed);
 
-        float distance = Vector2.Distance(enemy.transform.position, patrolPoint.position);
+        float distance = GetHorizontalDistance(enemy.transform.position, patrolPoint.position);
 
         if (distance <= movePointArriveDistance)
         {
             currentMovePoint = patrolPoint;
             isWaitingAtMovePoint = false;
-            currentState = EnemyState.Patrol;
+            currentState = stateAfterTeleport;
+            stateAfterTeleport = EnemyState.Patrol;
         }
+    }
+
+    public void StartChase()
+    {
+        targetRegionIndex = -1;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
+        currentState = EnemyState.Chase;
+    }
+
+    public void StopChase()
+    {
+        targetRegionIndex = -1;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
+        currentState = EnemyState.Patrol;
+    }
+
+    public void SetPlayerRegion(int regionIndex)
+    {
+        if (!IsValidRegionIndex(regionIndex)) return;
+
+        playerRegionIndex = regionIndex;
+    }
+
+    public void SetEnemyRegion(int regionIndex)
+    {
+        if (!IsValidRegionIndex(regionIndex)) return;
+
+        enemyRegionIndex = regionIndex;
+        targetRegionIndex = -1;
+        currentMovePoint = null;
+        isWaitingAtMovePoint = false;
     }
 
 }

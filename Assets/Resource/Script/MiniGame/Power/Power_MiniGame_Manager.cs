@@ -48,7 +48,7 @@ public class Power_MiniGame_Manager : MonoBehaviour
 
     private void OnMiniGameSuccess()
     {
-        Debug.Log("해킹에 성공했습니다.");
+        Debug.Log("?댄궧???깃났?덉뒿?덈떎.");
         isHack = true;
         mark.SetActive(false);
     }
