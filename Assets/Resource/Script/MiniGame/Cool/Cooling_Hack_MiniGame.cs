@@ -20,6 +20,7 @@ public class Cooling_Hack_MiniGame : MonoBehaviour
     private float pressure = 0f;
     private bool isPlaying;
     private Action onSuccess;
+    private Action onFail;
 
 
     [SerializeField] private float stableMinPressure = 45f;
@@ -68,6 +69,11 @@ public class Cooling_Hack_MiniGame : MonoBehaviour
         UpdateNeedleUI();
         UpdateStableCheck();
         UpdatePressureUI();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Fail();
+        }
     }
 
     public void StartMiniGame(Action successCallback, Action failCallback)
@@ -75,6 +81,7 @@ public class Cooling_Hack_MiniGame : MonoBehaviour
         if (isPlaying) return;
 
         onSuccess = successCallback;
+        onFail = failCallback;
 
         SetPlayerControl(false);
         pressure = 0.5f;
@@ -166,6 +173,24 @@ public class Cooling_Hack_MiniGame : MonoBehaviour
             coolingGameGroup.SetActive(false);
         }
         onSuccess?.Invoke();
+    }
+
+    private void Fail()
+    {
+        isPlaying = false;
+        SetPlayerControl(true);
+
+        if (MiniGamePanel != null)
+        {
+            MiniGamePanel.SetActive(false);
+        }
+
+        if (coolingGameGroup != null)
+        {
+            coolingGameGroup.SetActive(false);
+        }
+
+        onFail?.Invoke();
     }
 
     private void SetPlayerControl(bool canControl)

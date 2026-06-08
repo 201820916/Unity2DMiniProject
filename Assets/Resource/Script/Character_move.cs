@@ -44,11 +44,6 @@ public class Character_move : MonoBehaviour
         {
             anim.SetTrigger("Attack");
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        }
     }
 
     void FixedUpdate()

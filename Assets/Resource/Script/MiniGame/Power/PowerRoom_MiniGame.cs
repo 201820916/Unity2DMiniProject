@@ -30,6 +30,7 @@ public class PowerRoom_MiniGame : MonoBehaviour
     private bool isPlaying;
     private float score;
     private Action onSuccess;
+    private Action onFail;
     private float answer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +76,11 @@ public class PowerRoom_MiniGame : MonoBehaviour
         {
             SubmitPressure();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Fail();
+        }
     }
 
     public void StartMiniGame(Action successCallback, Action failCallback)
@@ -82,6 +88,7 @@ public class PowerRoom_MiniGame : MonoBehaviour
         if (isPlaying) return;
 
         onSuccess = successCallback;
+        onFail = failCallback;
 
         SetPlayerControl(false);
         pressure = 0.5f;
@@ -189,6 +196,24 @@ public class PowerRoom_MiniGame : MonoBehaviour
         }
         PowerGameGroup.SetActive(false);
         onSuccess?.Invoke();
+    }
+
+    private void Fail()
+    {
+        isPlaying = false;
+        SetPlayerControl(true);
+
+        if (MiniGamePanel != null)
+        {
+            MiniGamePanel.SetActive(false);
+        }
+
+        if (PowerGameGroup != null)
+        {
+            PowerGameGroup.SetActive(false);
+        }
+
+        onFail?.Invoke();
     }
 
     private void SetPlayerControl(bool canControl)
